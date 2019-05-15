@@ -67,7 +67,7 @@
     let drawId;
 
     function getRandomNumber(min,max) {
-        return Math.round(Math.random()* (max - min +1)) + min
+        return Math.round(Math.random()* (max - min +1)) + min 
     }
 
     window.addEventListener('mousemove', function(mouseMoveEvent) {
@@ -107,10 +107,16 @@
               })
 
               container.appendChild(ball)
-        }, 250)
+        }, 0)
     }
 
-    
+    window.addEventListener('mouseover', function() {
+        drawId = draw()
+    })
+
+    window.addEventListener('mouseout', function (){
+        clearInterval(drawId)
+    })
 
 </script>
 
