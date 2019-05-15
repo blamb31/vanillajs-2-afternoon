@@ -76,7 +76,7 @@
     <div class="container">
         <h1>Try Typing...</h1>
         <div class="input-container">
-            <input type="text">
+            <input  type="text">
             <ul id="list"></ul>
         </div>
     </div>
@@ -84,6 +84,43 @@
 </body>
 
 <script>
+
+    let characters = []
+    let list = document.getElementById('list')
+    let search = document.querySelector('input')
+
+    fetch('https://www.swapi.co/api/people')
+        .then(response => response.json())
+        .then(response => {
+            characters.push(...response.results)
+               
+        })
+
+        console.log(this)
+        
+    function filterText () {
+        console.log(this)
+        let self = this
+        let filtered = characters.filter(function(elem) {
+            console.log(self.value)
+            return elem.name.toLowerCase().includes(self.value.toLowerCase())
+        }).map(function(elem) {
+            return `<li>${elem.name}</li>`
+        })
+        
+        if (filtered.length) {
+            render(filtered)
+        }
+    }
+
+    function render (arr) {
+        let html = arr.join('')
+        list.innerHTML = html
+    }
+
+    search.addEventListener('keyup', filterText)
+    
+    
 </script>
 
 </html>

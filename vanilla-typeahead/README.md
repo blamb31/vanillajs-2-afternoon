@@ -59,9 +59,7 @@ In this step, we'll make our data appear on the page. To dynamically add content
       <details>
       <summary><code> html </code></summary>
       ```js
-        function render() {
-          const html = characters.map(val => `<li>${val.name}</li>`).join('')
-        }
+        
       ```
       </details>
     * We can now render that content to the DOM by targeting the `innerHTML` of our `list` and setting its value to our html.
