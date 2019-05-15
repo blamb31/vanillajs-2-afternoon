@@ -73,7 +73,42 @@
     window.addEventListener('mousemove', function(mouseMoveEvent) {
         mousePosition.x = mouseMoveEvent.pageX
         mousePosition.y = mouseMoveEvent.pageY
+
+        //console.log("X: ", mousePosition.x)
+        //console.log("Y: ", mousePosition.y)
     })
+
+    function draw() {
+        return setInterval(function() {
+            let container = document.getElementById('wrap')
+
+            const color = `background:rgb(${getRandomNumber(
+                0,
+                255
+              )},${getRandomNumber(0, 255)}, ${getRandomNumber(0, 255)});`;
+              const ballSize = getRandomNumber(10, 30);
+              const size = `height:${ballSize}px; width:${ballSize}px;`;
+              const left = `left:${getRandomNumber(
+                mousePosition.x - ballSize,
+                mousePosition.x
+              )}px;`;
+              const top = `top:${getRandomNumber(
+                mousePosition.y - ballSize,
+                mousePosition.y
+              )}px; `;
+              const style = `${left}${top}${color}${size}`;
+
+              let ball = document.createElement('div')
+              ball.classList.add('ball')
+              ball.style = style
+
+              ball.addEventListener('animationend', function(e) {
+                  e.target.remove()
+              })
+
+              container.appendChild(ball)
+        }, 250)
+    }
 
     
 
